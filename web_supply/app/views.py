@@ -1,16 +1,13 @@
 import hashlib
+import rsa
 
 from . import app, db
 from flask import render_template, g, redirect, url_for, request, jsonify
 import json
 
-from requests.compat import basestring
-
 from .models import *
 
-from datetime import timedelta
-from flask import make_response, request, current_app
-from functools import update_wrapper
+
 
 
 @app.route('/api/get_all_consignment_notes_by_id', methods=['POST'])
@@ -40,6 +37,22 @@ def get_all_keys():
                   'name': key.name}
         results.append(formed)
     return json.dumps(results)
+
+
+@app.route('/api/push_sign')
+def push_sign():
+    id = int(request.json['noteId'])
+    sign = request.json['signed']
+    signed_by = int(request.json['signedBy'])
+    note = ConsignmentNote.get(id)
+    key = Keys.get(signed_by).public_key
+    with open('Files\\' + note.data, 'r') as data:
+        hash = hashlib.sha256(data.read()).hexdigest()
+    if hash != rsa.decrypt(sign, key):
+        return 'NE OK'
+    note.signature = sign
+    note.signed_by = signed_by
+    return 'OK'
 
 
 @app.route('/api/login', methods=['POST'])

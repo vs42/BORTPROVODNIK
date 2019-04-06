@@ -8,8 +8,6 @@ class User(db.Model):
     username = db.Column(db.String(128), unique=True, index=True, nullable=False)
     password = db.Column(db.String(128), nullable=False)
     name = db.Column(db.String(128))
-    signature = db.Column(db.String(128))
-    signed_by = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def generate_auth_token(self, expiration=600000):
         s = Serializer(app.config['SECRET_KEY'], expires_in=expiration)
@@ -34,7 +32,9 @@ class ConsignmentNote(db.Model):
     data = db.Column(db.String(128), unique=True)
     date = db.Column(db.Integer)
     airplaneNumber = db.Column(db.String(128))
+    signature = db.Column(db.String(128))
 
+    signed_by = db.Column(db.Integer, db.ForeignKey('user.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 

@@ -12,11 +12,11 @@ def api_login():
     return jsonify({'name': 'Chris'})
 
 
-@app.route('/login')
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     return render_template('loginpage.html')
 
 
-@app.route('/register')
+@app.route('/register', methods=['POST', 'GET'])
 def register():
     return render_template('mainpage.html')

@@ -20,7 +20,7 @@ def get_all_consignment_notes_by_id():
     results = []
     for note in ConsignmentNote.query.filter_by(user_id=id).all():
         with open('Files\\' + note.data, 'r') as data:
-            formed = {'id': note.id,
+            formed = {'id': str(note.id),
                       'flightNumber': note.flightNumber,
                       'data': data.read(),
                       'date': note.date,
@@ -35,7 +35,7 @@ def get_all_keys():
     id = User.verify_auth_token(token).id
     results = []
     for key in Keys.query.all():
-        formed = {'id': key.username,
+        formed = {'id': str(key.id),
                   'public': key.public_key,
                   'name': key.name}
         results.append(formed)

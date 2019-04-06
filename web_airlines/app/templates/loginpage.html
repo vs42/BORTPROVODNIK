@@ -1,0 +1,36 @@
+<html>
+<head>
+<link rel="stylesheet" href= "../style.css">
+</head>
+<body>
+<script defer>
+window.onload = function() {
+   document.getElementById('id01').style.display='block'
+};
+</script>
+
+<div id="id01" class="modal">
+  
+  <form class="modal-content animate" method="post" action="http://172.31.226.63:80/api/login">
+    <div class="container">
+      <label for="username"><b>Username</b></label>
+      <input type="text" placeholder="Enter Login" name="username" required>
+
+      <label for="password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+        
+      <button type="submit">Login</button>
+    </div>
+  <div class="container signin">
+    <p> <a href="../startpage.html">Register</a>.</p>
+  </div>
+  </form>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+</script>
+
+</body>
+</html>

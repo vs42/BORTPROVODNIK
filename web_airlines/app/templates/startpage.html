@@ -1,0 +1,31 @@
+<html>
+<head>
+<link rel="stylesheet" href= "style.css">
+</head>
+<body>
+
+<form action="http://172.31.226.63:80/api/register" method="post">
+  <div class="container">
+    <h1>Register</h1>
+    <hr>
+
+    <label for="username"><b>Login</b></label>
+    <input type="text" placeholder="Enter Login" name="username" required>
+
+    <label for="name"><b>Name</b></label>
+    <input type="text" placeholder="Enter Name" name="name" required>
+
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+    <hr>
+
+    <button type="submit" class="registerbtn">Register</button>
+  </div>
+  
+  <div class="container signin">
+    <p> <a href="templates/loginpage.html">Sign in</a>.</p>
+  </div>
+</form>
+
+</body>
+</html>

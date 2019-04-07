@@ -59,7 +59,7 @@ def push_act():
 def login():
     f = open('text.txt', 'r')
     for line in f:
-        if (line.split()[0] == request.args.post['username'] and line.split()[1] == request.args.post['password']):
+        if (line.split()[0] == request.args['username'] and line.split()[1] == request.args['password']):
             return redirect('../mainpage')
     return redirect('./loginpage')
 
@@ -67,7 +67,7 @@ def login():
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     f = open('text.txt', 'a')
-    f.write(request.args.post['username'] + ' ' + request.args.post['password'] + ' ' + request.args.post['name'] + '\n')
+    f.write(request.args['username'] + ' ' + request.args['password'] + ' ' + request.args['name'] + '\n')
     return redirect('./mainpage')
 
 @app.route('/loginpage', methods=['POST', 'GET'])

@@ -61,6 +61,8 @@ def login():
     for line in f:
         if (line.split()[0] == request.form['username'] and line.split()[1] == request.form['password']):
             return redirect('../mainpage')
+            f.close()
+    f.close()
     return redirect('./loginpage')
 
 
@@ -68,6 +70,7 @@ def login():
 def register():
     f = open('text.txt', 'a')
     f.write(request.form['username'] + ' ' + request.form['password'] + ' ' + request.form['name'] + '\n')
+    f.close()
     return redirect('./mainpage')
 
 @app.route('/loginpage', methods=['POST', 'GET'])

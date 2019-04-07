@@ -5,6 +5,8 @@ host = '0.0.0.0'
 port = 81
 debug = True
 
+SUPPLY_URL = 'http://localhost:80/api/push_key'
+
 WTF_CSRF_ENABLED = True
 SECRET_KEY = 'DFBDFSFVfsbdrkrdkyrdUGyudf'
 

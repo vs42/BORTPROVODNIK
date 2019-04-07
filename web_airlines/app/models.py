@@ -33,10 +33,15 @@ class ConsignmentNote(db.Model):
     date = db.Column(db.DateTime)
     airplaneNumber = db.Column(db.String(128))
 
-    user_id = db.Integer, db.ForeignKey('user.id')
 
+class Act(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    flightNumber = db.Column(db.String(128))
+    data = db.Column(db.String(128), unique=True)
+    date = db.Column(db.DateTime)
+    airplaneNumber = db.Column(db.String(128))
 
-class Keys(db.Model):
+class FlightAttendant(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     public_key = db.Column(db.String(128), unique=True, index=True)
     name = db.Column(db.String(128))

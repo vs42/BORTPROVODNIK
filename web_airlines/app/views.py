@@ -59,9 +59,10 @@ def push_act():
 def login():
     f = open('text.txt', 'r')
     for line in f:
+        print(line.split()[0], request.form['username'], line.split()[1], request.form['password'])
         if (line.split()[0] == request.form['username'] and line.split()[1] == request.form['password']):
-            return redirect('../mainpage')
             f.close()
+            return redirect('./mainpage')
     f.close()
     return redirect('./loginpage')
 

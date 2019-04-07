@@ -60,12 +60,25 @@ def login():
     f = open('text.txt', 'r')
     for line in f:
         if (line.split()[0] == request.post[username] and line.split()[1] == request.post[password]):
-            return render_template('mainpage.html')        
-    return render_template('loginpage.html')
+            return redirect('../mainpage')
+    return redirect('../loginpage')
 
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     f = open('text.txt', 'a')
     f.write(request.post[username] + ' ' + request.post[password] + ' ' + request.post[name] + '\n')
-    return render_template('mainpage.html')
+    return redirect('../mainpage')
+
+@app.route('/loginpage', methods=['POST', 'GET'])
+def loginpage():
+    return render_template('../loginpage.html')
+
+
+@app.route('/registerpage', methods=['POST', 'GET'])
+def registerpage():
+    return render_template('startpage.html')
+
+@app.route('/mainpage', methods=['POST', 'GET'])
+def mainpage():
+    return render_template('../mainpage.html')

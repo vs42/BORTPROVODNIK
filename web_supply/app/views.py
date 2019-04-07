@@ -44,10 +44,10 @@ def push_sign():
     id = int(request.json['noteId'])
     sign = request.json['signed']
     signed_by = int(request.json['signedBy'])
-    note = ConsignmentNote.get(id)
-    key = Keys.get(signed_by).public_key
-    with open('Files\\' + note.data, 'r') as data:
-        hash = hashlib.sha256(data.read()).hexdigest()
+    note = ConsignmentNote.query.get(id)
+    key = Keys.query.get(signed_by).public_key
+    #with open('Files\\' + note.data, 'r') as data:
+    #    hash = hashlib.sha256(data.read()).hexdigest()
     #if hash != rsa.decrypt(sign, key):
     #    return 'NE OK'
     note.signature = sign

@@ -28,13 +28,13 @@ def api_login():
 def push_note():
     sign = request.json['sign']
     signed_by = int(request.json['signedBy'])
-    data = request.json['data']
-    flightNumber = request.json['flightNumber']
-    date = request.json['date']
-    airplaneNumber = request.json['airplaneNumber']
+    data = request.json['text']
+    flightNumber = request.json['flight']
+    date = request.json['flightDate']
+    airplaneNumber = request.json['planeNumber']
     with open('Files\\' + sign, 'w', encoding='utf-8') as file:
         file.write(data)
-    note = ConsignmentNote(sign=sign, signed_by=signed_by, data=sign, date=date, flightNumber=flightNumber, airplaneNumber=airplaneNumber)
+    note = ConsignmentNote(signature=sign, signed_by=signed_by, data=sign, date=date, flightNumber=flightNumber, airplaneNumber=airplaneNumber)
     db.session.add(note)
     db.session.commit()
     return 'OK'
@@ -42,17 +42,18 @@ def push_note():
 
 @app.route('/api/push_act', methods=['POST'])
 def push_act():
-    sign = request.json['sign']
+    sign = request.json['flight']
     signed_by = int(request.json['signedBy'])
-    data = request.json['data']
-    flightNumber = request.json['flightNumber']
-    date = request.json['date']
-    airplaneNumber = request.json['airplaneNumber']
+    data = request.json['text']
+    flightNumber = request.json['flight']
+    date = request.json['flightDate']
+    airplaneNumber = request.json['planeNumber']
     with open('Files\\' + sign, 'w', encoding='utf-8') as file:
         file.write(data)
-    act = Act(sign=sign, signed_by=signed_by, data=sign, date=date, flightNumber=flightNumber, airplaneNumber=airplaneNumber)
+    act = Act(signature=sign, signed_by=signed_by, data=sign, date=date, flightNumber=flightNumber, airplaneNumber=airplaneNumber)
     db.session.add(act)
     db.session.commit()
+
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():

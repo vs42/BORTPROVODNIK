@@ -30,16 +30,22 @@ class ConsignmentNote(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     flightNumber = db.Column(db.String(128))
     data = db.Column(db.String(128), unique=True)
-    date = db.Column(db.DateTime)
+    date = db.Column(db.Integer)
     airplaneNumber = db.Column(db.String(128))
+    signature = db.Column(db.String(128))
+
+    signed_by = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
 class Act(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     flightNumber = db.Column(db.String(128))
     data = db.Column(db.String(128), unique=True)
-    date = db.Column(db.DateTime)
+    date = db.Column(db.Integer)
     airplaneNumber = db.Column(db.String(128))
+    signature = db.Column(db.String(128))
+
+    signed_by = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class FlightAttendant(db.Model):
     id = db.Column(db.Integer, primary_key=True)
